@@ -1,0 +1,21 @@
+# 只发布正式源码与最新安装包；work 中的临时调试工具、截图和本地抓取文件不入库
+/work/*
+!/work/sidebar-toggle.js
+!/work/inject.cjs
+!/work/Launcher.cs
+!/work/README.md
+
+# 不发布历史版本，只保留当前发行版
+/exports/*
+!/exports/Codex侧栏增强-0.4.27-Windows.zip
+!/exports/Codex侧栏增强-0.4.27/
+!/exports/Codex侧栏增强-0.4.27/**
+
+# 常见本机配置、缓存和日志
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+Thumbs.db
+.DS_Store
