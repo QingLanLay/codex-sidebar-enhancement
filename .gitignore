@@ -22,3 +22,8 @@ node_modules/
 *.log
 Thumbs.db
 .DS_Store
+!/exports/Codex侧栏增强-0.4.31-Windows.zip
+!/exports/Codex侧栏增强-0.4.31/
+!/exports/Codex侧栏增强-0.4.31/**
+/exports/Codex侧栏增强-0.4.31/launcher-check.log
+/exports/Codex侧栏增强-0.4.31/launcher.config
