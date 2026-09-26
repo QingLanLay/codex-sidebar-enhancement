@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   if (window.top !== window || /avatar-overlay|quick-chat|prewarm/.test(location.href)) return;
-  const KEY='__sidebarToggleProbe', VERSION='0.4.28.0', STORAGE='diy-sidebar-enhancement-v2', UI_LANGUAGE_KEY='diy-sidebar-ui-language';
+  const KEY='__sidebarToggleProbe', VERSION='0.4.28.1', STORAGE='diy-sidebar-enhancement-v2', UI_LANGUAGE_KEY='diy-sidebar-ui-language';
   if(window[KEY]?.version===VERSION){window[KEY].refreshUI?.();return;}
   const previousEnabled=window[KEY]?.enabled;
   window[KEY]?.dispose?.();
@@ -542,7 +542,9 @@
   document.addEventListener('pointerdown',queueOutputPanelBridgeSync,true);document.addEventListener('click',queueOutputPanelBridgeSync,true);window.addEventListener('keydown',onOutputPanelBridgeKey,true);window.addEventListener('blur',queueOutputPanelBridgeSync);
   function mountInputHistoryPanel(){
     if(!rightPanelEnabled){historyContainer.remove();historyExpandButton.remove();mountHistoryControls(false);syncOutputPanelRightBridge();return;}
-    const main=document.querySelector('[data-app-shell-focus-area="main"]');if(!main?.parentElement){historyContainer.remove();historyExpandButton.remove();mountHistoryControls(false);syncOutputPanelRightBridge();return;}
+    const mainCandidates=[...document.querySelectorAll('[data-app-shell-focus-area="main"]')];
+     const main=mainCandidates.find(node=>node.closest('main'))||mainCandidates.filter(node=>{const rect=node.getBoundingClientRect();return rect.width>window.innerWidth*.4&&rect.height>window.innerHeight*.5;}).sort((a,b)=>b.getBoundingClientRect().height-a.getBoundingClientRect().height)[0]||mainCandidates[0];
+     if(!main?.parentElement){historyContainer.remove();historyExpandButton.remove();mountHistoryControls(false);syncOutputPanelRightBridge();return;}
     if(historyCollapsed){historyContainer.remove();mountHistoryControls(false,true);if(historyExpandButton.parentElement!==document.body)document.body.append(historyExpandButton);syncOutputPanelRightBridge();return;}
     historyExpandButton.remove();
     applyHistoryPanelWidth(historyPanelWidth);
