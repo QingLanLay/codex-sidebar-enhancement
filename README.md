@@ -1,8 +1,8 @@
 # Codex 侧栏增强 | Codex Sidebar Enhancement
 
-为 Windows 版 Codex 桌面客户端提供侧栏、会话快捷栏、历史提问和设置面板增强。当前分发版本为 **0.4.31**。
+为 Windows 版 Codex 桌面客户端提供侧栏、会话快捷栏、历史提问和设置面板增强。当前分发版本为 **0.4.34**。
 
-A Windows desktop enhancement for Codex, adding a sidebar, session quick bar, conversation history, and settings panel. Current distribution version: **0.4.31**.
+A Windows desktop enhancement for Codex, adding a sidebar, session quick bar, conversation history, and settings panel. Current distribution version: **0.4.34**.
 
 ![Codex 侧栏增强当前功能布局示意图 | Current feature overview](侧栏增强功能概览.png)
 
@@ -12,8 +12,8 @@ Illustration: ① recent project ordering; ② settings and usage visibility; �
 
 ## 一键安装 | Quick Installation
 
-- [Windows 安装包（支持符合条件的热更新） | Windows installer (hot update when supported)](exports/Codex侧栏增强-0.4.31-Windows.zip)
-- [交给其他 Codex 的一键安装说明 | One-click installation instructions for another Codex](exports/Codex侧栏增强-0.4.31/交给其他Codex一键安装.md)
+- [Windows 安装包（支持符合条件的热更新） | Windows installer (hot update when supported)](exports/Codex侧栏增强-0.4.34-Windows.zip)
+- [交给其他 Codex 的一键安装说明 | One-click installation instructions for another Codex](exports/Codex侧栏增强-0.4.34/交给其他Codex一键安装.md)
 - [功能、兼容范围与卸载说明 | Features, compatibility, and uninstall guide](work/README.md)
 
 当前安装包面向 Windows Codex **26.924.1866.0 或更新版本** 和 Node.js **22+**。安装器会校验 Windows 程序包入口，不会因新版构建号变化而直接拒绝；已安装版本且运行页面可连接时可热更新，否则按安装器提示在下次启动时加载。请先阅读安装说明，不要单独提取或修改安装包内文件。
@@ -28,11 +28,29 @@ The plugin UI follows the Codex interface language by default. You can also choo
 
 - `work/sidebar-toggle.js`：侧栏增强主脚本 | Main sidebar enhancement script.
 - `work/inject.cjs`、`work/Launcher.cs`：注入监视器与 Windows 启动器源码 | Injection monitor and Windows launcher source.
-- `exports/Codex侧栏增强-0.4.31/`：当前发行版文件、SHA-256 清单和安装/卸载脚本 | Current distribution files, SHA-256 manifest, and install/uninstall scripts.
-- `exports/Codex侧栏增强-0.4.31-Windows.zip`：可分发安装包 | Distributable Windows package.
+- `exports/Codex侧栏增强-0.4.34/`：当前发行版文件、SHA-256 清单和安装/卸载脚本 | Current distribution files, SHA-256 manifest, and install/uninstall scripts.
+- `exports/Codex侧栏增强-0.4.34-Windows.zip`：可分发安装包 | Distributable Windows package.
 - 失败会话自动识别模型容量、503 Service Unavailable、auth_unavailable、no auth available、server_error 等错误，在当前会话内后台调用原生“重试/继续”动作；即使界面不显示按钮，也会调用 Codex 内部恢复动作；默认自动启动，无需手动切换会话。 | Failed sessions automatically retry native “Retry/Continue” actions for capacity, 503, auth_unavailable, no auth available, and server_error failures.
 
 安装包及源码不包含开发机聊天记录、数据库、额度密钥或运行日志。仓库公开仅表示可查看；当前未附加开源许可证。
 
 The package and source do not include the developer machine's conversations, database, usage keys, or runtime logs. Public visibility allows viewing; no open-source license is currently included.
 
+
+
+## 2026-10-08 更新 / Update
+
+**0.4.34** 已按本机 Codex **26.1002.7124.0** 的程序包与页面脚本适配，去除会话状态连接对压缩导出名的依赖，并避开新版非活动标签页与标题栏重复主区域。保留现有快捷栏、独立额度卡和设置。当前实例已热更新，并在新版运行页面确认状态连接和界面行为；首次安装且没有调试端口时，仍需从增强快捷方式重新启动。
+
+**0.4.34** is adapted against the installed Codex **26.1002.7124.0** package and renderer source. Runtime discovery no longer relies on minified export names, and layout anchoring excludes inactive tabs and titlebar duplicates. Existing quick-bar, separate usage card, and settings are retained. The current instance has been hot-updated and its native runtime connection and UI behavior are verified. A first installation without a debug port still needs relaunching from the enhancement shortcut.
+
+
+当前脚本 **0.4.34.2**：选中状态与运行状态独立，保留绿色玻璃选中态；已包含主动使用排序、12 卡片规则、非项目会话导航和移除修复。
+
+
+### 0.4.34 最近项目与快捷栏改版
+
+最近项目改为主动使用排序，名称打开最近会话，独立箭头展开会话预览；不再锁定前四个项目。快捷栏最多 12 个卡片，优先保留当前会话、运行中和完成未查看；点击不按查看时间重排，选中卡自动进入可见区。其余会话从带搜索/分页的“更多”列表访问。失败和状态未读取有独立提示，选中态保留状态色与玻璃材质。
+
+
+0.4.34 修复非项目会话导航和快捷块移除，并按真实执行状态/持续目标修正运行颜色；最近项目同时支持新版优先级侧栏。

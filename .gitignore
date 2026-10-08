@@ -27,3 +27,13 @@ Thumbs.db
 !/exports/Codex侧栏增强-0.4.31/**
 /exports/Codex侧栏增强-0.4.31/launcher-check.log
 /exports/Codex侧栏增强-0.4.31/launcher.config
+
+# 新版兼容发行包；不发布安装时生成的本机状态
+
+!/work/sidebar-ux.test.cjs
+
+!/exports/Codex侧栏增强-0.4.34-Windows.zip
+!/exports/Codex侧栏增强-0.4.34/
+!/exports/Codex侧栏增强-0.4.34/**
+/exports/Codex侧栏增强-0.4.34/launcher-check.log
+/exports/Codex侧栏增强-0.4.34/launcher.config
